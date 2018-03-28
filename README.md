@@ -8,10 +8,8 @@ Unfortunately, mas itself appears to be broken at the moment for High Sierra ins
 
 ```console
 $ cp app-store-credentials.sample.sh app-store-credentials.sh
-$ vi app-store-credentials.sh
-(supply valid credentials)
+$ nano app-store-credentials.sh
 ...
-ESC:wqa
 
 $ vagrant up
 $ vagrant ssh -c ". /vagrant/app-store-credentials.sh && mas signin \\"$APPLE_ID\\" \\"$APPLE_PASSWORD\\""
@@ -21,10 +19,10 @@ $ vagrant ssh -c "APP_ID=\\$(mas search Xcode | head -n 1 | awk '{ print $1 }') 
 
 # REQUIREMENTS
 
-* [macOS Vagrant base box](https://github.com/mcandre/packer-templates/tree/master/macos)
 * [Vagrant](https://www.vagrantup.com)
-* [VMware](https://www.vmware.com)
+* [VirtualBox](https://www.virtualbox.org/) and/or [VMware](https://www.vmware.com)
 * [vagrant-vmware-{fusion,workstation} plugin](https://www.vagrantup.com/vmware/index.html)
+* [vagrant-package-vmware](https://github.com/bacongravy/vagrant-package-vmware)
 
 ## Recommended
 
@@ -32,4 +30,6 @@ $ vagrant ssh -c "APP_ID=\\$(mas search Xcode | head -n 1 | awk '{ print $1 }') 
 
 # EXPORT
 
-Unfortunately, VMware-provided Vagrant VM's are not easy to export for reuse in downstream Vagrant boxes.
+```console
+$ make boxes
+```
